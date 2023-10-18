@@ -194,15 +194,18 @@
         earthChart.data.labels = earthLabels;
         earthChart.data.datasets[0].data = earthValues;
         earthChart.update(); // Update the Earth chart
+        
     }
 
     function updateSunChart() {
         sunChart.data.labels = sunLabels;
         sunChart.data.datasets[0].data = sunValues;
         sunChart.update(); // Update the Sun chart
+        
     }
 
     onMount(async () => {
+
         // Common API key for both endpoints
         const apiKey = "1202a311-b72c-4c0c-87fb-48cd908723c1";
         const earthApiUrl =
@@ -217,12 +220,12 @@
                 "content-type": "application/json",
             },
         });
-
+        
         if (earthResponse.ok) {
             earthData = await earthResponse.json();
             // Assuming 'earthData' is an object with properties 'time' and 'vertical'
             if (earthData.time) {
-                earthLabels.push(earthData.ti);
+                earthLabels.push(earthData.time);
                 earthValues.push(earthData.time);
             }
 
@@ -276,6 +279,8 @@
             console.error("Failed to fetch Earth data from the API.");
         }
 
+        setInterval(earthResponse, 3000);
+
         // Fetch Sun data
         const sunResponse = await fetch(sunApiUrl, {
             headers: {
@@ -288,6 +293,7 @@
             sunData = await sunResponse.json();
             // Assuming 'sunData' is an object with properties 'time' and 'bzGSM'
             sunLabels.push(sunData.time);
+            sunValues.push(sunData.time);
 
             if (sunData.bzGSM) {
                 sunLabels.push("bzGSM");
@@ -313,6 +319,8 @@
         } else {
             console.error("Failed to fetch Sun data from the API.");
         }
+
+        setInterval(sunResponse, 3000);
     });
     // Initialize Sun chart
     onMount(() => {
@@ -322,6 +330,9 @@
             data: sunChartData,
             options: {
                 scales: {
+                    x: {
+                        display: true, // Display the X-axis
+                    },
                     y: {
                         beginAtZero: true,
                     },
