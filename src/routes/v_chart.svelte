@@ -14,7 +14,7 @@
     
     // Data for the magnetometer chart
     const magnetometerData = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      labels: ['June', 'July', 'Aug', 'Sept', 'Oct'],
       datasets: [
         {
           label: 'Bt',
@@ -49,7 +49,7 @@
 
     // Data for the orientation chart (intensity, inclination, declination, north, east, vertical, horizontal)
     const orientationData = {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+      labels:['June', 'July', 'Aug', 'Sept', 'Oct'],
       datasets: [
         {
           label: 'Intensity',
@@ -182,26 +182,6 @@
   .chart-items {
     width: 100%;
   }
-
-  .additional-data {
-        list-style-type: none; /* Remove default bullets */
-        padding-left: 20px; /* Indent the list items */
-        color: #fff; /* Text color */
-    }
-
-    .additional-data li::before {
-        content: "▶"; /* Use a triangle sign as a bullet */
-        display: inline-block;
-        width: 1em;
-        margin-left: -1em; /* Adjust the position of the triangle */
-        margin-right: 5px; /* Add spacing between the bullet and text */
-        color: red; /* Set the color to red */
-    }
-
-    .additional-data li {
-        margin-bottom: 15px; /* Adjust the spacing between list items */
-    }
-
 </style>
 
 <div class="chart-container">
@@ -212,14 +192,3 @@
     <canvas bind:this={orientationChart} id="orientationChart"></canvas>
   </div>
 </div>
-
-<div class="ml">
-  <ul class="additional-data">
-    <li class="triangle">Frequency of magnetic reconnection: </li>
-    <li class="triangle">Relation between solar activity and Earth season: </li>
-    <li class="triangle">Relation between solar activity and solar season: </li>
-    <li class="triangle">Solar winds that are easily accessed: </li>
-    <li class="triangle">Earth's magnetosphere: </li>
-</ul> 
-</div>
-

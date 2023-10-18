@@ -1,92 +1,107 @@
-# Satellite Data Analysis and Visualization for Predicting Magnetic Reconnection
+# This repo is no longer maintained. Consider using `npm init vite` and selecting the `svelte` option or — if you want a full-fledged app framework — use [SvelteKit](https://kit.svelte.dev), the official application framework for Svelte.
 
-<img src="https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/pro_logo.png" width="100">
+---
 
+# svelte app
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Data Sources](#data-sources)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
-## Introduction
+To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-Welcome to the Satellite Data Analysis and Visualization project! Our platform leverages data from the ACE-Satellite and DSCOVR satellite missions to provide real-time predictions and insights into magnetic reconnection events, solar activity, and their impact on Earth.
+```bash
+npx degit sveltejs/template svelte-app
+cd svelte-app
+```
 
-### Home Page
-
-Analysing the earth and data given by the satellites of the sun and detecting magnetic reconnection
-
-![Screenshot of the Web Interface](https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/p1.png)
-
-### Visualization Chart
-
-Showing the temperature, magnetometer, earth orientation and position data 
-
-![Screenshot of the Web Interface](https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/p3.png)
+*Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
 
-With the help of our AI model we are predicting these values
+## Get started
 
-![Screenshot of the Web Interface](https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/p2.png)
+Install the dependencies...
 
+```bash
+cd svelte-app
+npm install
+```
 
-### Click on the satellite buttons and see the information being shown by the different satellites and predictions made by their data
+...then start [Rollup](https://rollupjs.org):
 
+```bash
+npm run dev
+```
 
-![Screenshot of the Web Interface](https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/p4.png)
+Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
+By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
+If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
 
-## Features
+## Building and running in production mode
 
-- **Magnetic Reconnection Prediction:** Our platform utilizes machine learning algorithms to predict the occurrence of magnetic reconnection events.
-  
-- **Solar Activity Analysis:** Explore the relationship between solar activity and Earth's seasons and solar seasons.
+To create an optimised version of the app:
 
-- **Solar Wind Data:** Easily access crucial solar wind data for monitoring space weather conditions.
+```bash
+npm run build
+```
 
-- **Magnetosphere Insights:** Visualize and analyze Earth's magnetosphere in response to solar activity.
-  
-- **Automated Twitter Bot** Sending Post In Twitter Through Our Social Media Platform
-
-- **Interactive User Interface:** An intuitive web-based interface built with SvelteKit for exploring and visualizing satellite data.
-
-## Getting Started
-
-To get started with the project, follow these steps:
-
-1. Clone the repository: git clone "https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23.git"
-2.  cd ReconSolarShieldInitiativeSpaceApps23/Frontend/
-3.  npm install rollup
-4.  npm run dev
-
-## Data Sources
-
-- [ACE-Satellite Data](https://science.nasa.gov/mission/ace/)
-- [DSCOVR Data](https://www.nesdis.noaa.gov/current-satellite-missions/currently-flying/dscovr-deep-space-climate-observatory)
-
-## Technologies Used
-
-- SvelteKit: A modern web framework for building the interactive user interface.
-- ASP.NET: Utilized for the REST API that powers data retrieval and processing.
-- Automated Machine Learning: Employed for predictive modeling.
-- MongoDB: Our database for storing and retrieving satellite and prediction data.
-
-## API EndPoints
-
-![Screenshot of the Web Interface](https://github.com/mdjannatulnayem/ReconSolarShieldInitiativeSpaceApps23/blob/main/Frontend/project_images/p5.png)
-
-## Contributing
-
-We welcome contributions from the community. If you'd like to contribute to the project, please follow our [Contributing Guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 
+## Single-page app mode
 
+By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+
+If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+
+```js
+"start": "sirv public --single"
+```
+
+## Using TypeScript
+
+This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+
+```bash
+node scripts/setupTypeScript.js
+```
+
+Or remove the script via:
+
+```bash
+rm scripts/setupTypeScript.js
+```
+
+If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
+
+## Deploying to the web
+
+### With [Vercel](https://vercel.com)
+
+Install `vercel` if you haven't already:
+
+```bash
+npm install -g vercel
+```
+
+Then, from within your project folder:
+
+```bash
+cd public
+vercel deploy --name my-project
+```
+
+### With [surge](https://surge.sh/)
+
+Install `surge` if you haven't already:
+
+```bash
+npm install -g surge
+```
+
+Then, from within your project folder:
+
+```bash
+npm run build
+surge public my-project.surge.sh
+```

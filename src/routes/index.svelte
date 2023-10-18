@@ -49,7 +49,7 @@
             
             <!-- Route to Twitter -->
             <a href="https://twitter.com/RssiSpaceApps23" target="_blank">
-                X bot
+                <i class="fa-brands fa-x-twitter" style="color: #ffcc00;background-color:#444;"></i>
             </a>
         </div>
     </div>
