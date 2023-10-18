@@ -1,9 +1,0 @@
-{
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/Frontend/__sapper__/build/:1"
-      }
-    ]
-  }
-  
