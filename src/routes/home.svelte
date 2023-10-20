@@ -441,8 +441,8 @@
 <main class="home-container">
     <div class="navbar">
         <div class="navbar-buttons">
-            <button on:click={showACESatellite}> ACE Satellite </button>
-            <button on:click={showDSCOVRSatellite}> DSCOVR Satellite </button>
+            <button class="round-button" on:click={showACESatellite}> ACE Satellite </button>
+            <button class="round-button" on:click={showDSCOVRSatellite}> DSCOVR Satellite </button>
         </div>
     </div>
 
@@ -470,14 +470,80 @@
 
     <!-- Magnetic Reconnection Detection -->
     {#if magneticReconnection}
-        <p>Magnetic Reconnection Detected!</p>
+        <p class="bullet-point">Magnetic Reconnection Detected!</p>
     {:else}
-        <p>No Magnetic Reconnection Detected.</p>
+        <p class="bullet-point-green">No Magnetic Reconnection Detected.</p>
     {/if}
 </main>
 
 <style>
     /* Your CSS styles for home.svelte */
+    .bullet-point {
+      position: relative;
+      padding-left: 20px; /* Adjust the spacing as needed */
+    }
+
+    .round-button:hover {
+      box-shadow: 0 0 20px yellow; /* Adjust the glow effect */
+      transform: scale(1.1); /* Adjust the scale effect */
+    }
+  
+    .bullet-point::before {
+      content: "";
+      display: inline-block;
+      width: 10px; /* Adjust the size of the bullet point */
+      height: 10px; /* Adjust the size of the bullet point */
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: glow 1s infinite; /* Add a glow animation */
+    }
+  
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 5px red;
+      }
+      50% {
+        box-shadow: 0 0 20px red;
+      }
+      100% {
+        box-shadow: 0 0 5px red;
+      }
+    }
+
+    .bullet-point-green {
+      position: relative;
+      padding-left: 20px; /* Adjust the spacing as needed */
+    }
+  
+    .bullet-point-green::before {
+      content: "";
+      display: inline-block;
+      width: 10px; /* Adjust the size of the bullet point */
+      height: 10px; /* Adjust the size of the bullet point */
+      background-color: rgb(172, 228, 20);
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: glow 1s infinite; /* Add a glow animation */
+    }
+  
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 5px rgb(172, 228, 20)
+      }
+      50% {
+        box-shadow: 0 0 20px rgb(172, 228, 20)
+      }
+      100% {
+        box-shadow: 0 0 5px rgb(172, 228, 20)
+      }
+    }
     .navbar {
         display: flex;
         justify-content: space-between;

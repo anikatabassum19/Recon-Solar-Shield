@@ -37,14 +37,14 @@
                 on:click={showHome}
                 style="background-color: #444; font-size: 20px; color: #ffcc00; cursor: pointer;"
             >
-                Home
+                Main
             </button>
             <!-- Button to show the Chart component -->
             <button
                 on:click={showIndex}
                 style="background-color: #444; font-size: 20px; color: #ffcc00; cursor: pointer;"
             >
-                Visualization Chart
+                Visualization
             </button>
             
             <!-- Route to Twitter -->
