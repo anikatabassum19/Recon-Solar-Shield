@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import Chart from 'chart.js/auto';
-
+  import News from './news.svelte';
   
   let magnetometerChart;
   let orientationChart;
@@ -190,5 +190,8 @@
   </div>
   <div class="chart-items">
     <canvas bind:this={orientationChart} id="orientationChart"></canvas>
+  </div>
+  <div class="news">
+    <News/>
   </div>
 </div>
