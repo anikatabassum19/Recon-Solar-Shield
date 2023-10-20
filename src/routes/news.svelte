@@ -1,17 +1,19 @@
 <script>
-    let magneticReconnectionFrequency = 0.1;
+    let magneticReconnectionFrequencyDay = 0.1;
+    let magneticReconnectionFrequencyMonth = 0.15;
+    let magneticReconnectionFrequencyYear = 0.12;
   </script>
   
   <main>
     <section>
       <h4 class="bullet-point">
-        Reconnection Rate Over The Day: {magneticReconnectionFrequency}
+        Reconnection Rate Over The Day: {magneticReconnectionFrequencyDay}
       </h4>
       <h4 class="bullet-point">
-        Reconnection Rate Over The Month: {magneticReconnectionFrequency}
+        Reconnection Rate Over The Month: {magneticReconnectionFrequencyMonth}
       </h4>
       <h4 class="bullet-point">
-        Reconnection Rate Over The Year: {magneticReconnectionFrequency}
+        Reconnection Rate Over The Year: {magneticReconnectionFrequencyYear}
       </h4>
       <div class="options-container">
         <button class="round-button">bx</button>
