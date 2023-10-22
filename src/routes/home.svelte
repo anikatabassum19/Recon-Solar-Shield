@@ -356,18 +356,19 @@
 
     async function lifeCycleEvent()
     {
-        // fetch data
+        // Fetch data
         await fetchEarthData();
         await fetchSolarWindData();
 
-        // check reconnection
+        // Check reconnection
         magneticReconnection = checkMagneticReconnection();
 
-        // take action
+        // Take appropriate action
         if(magneticReconnection)
         {
-            await saveReconnectionOccurence();
-            await magneticReconnectionDetectionTweet();
+            /* Not necessarily needed as taken care of in the backend*/
+            // await saveReconnectionOccurence();
+            // await magneticReconnectionDetectionTweet();
         }
     }
 

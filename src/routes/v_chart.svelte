@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import Chart from 'chart.js/auto';
-  import News from './news.svelte';
+  import Analytics from './analytics.svelte';
   
   let magnetometerChart;
   let orientationChart;
@@ -182,16 +182,23 @@
   .chart-items {
     width: 100%;
   }
+
+  .analytics {
+    display: block;
+    padding: 10px 40px;
+  }
 </style>
 
+<div class="analytics"><Analytics/></div>
+
+<br/>
+
 <div class="chart-container">
+  
   <div class="chart-items">
     <canvas bind:this={magnetometerChart} id="magnetometerChart"></canvas>
   </div>
   <div class="chart-items">
     <canvas bind:this={orientationChart} id="orientationChart"></canvas>
-  </div>
-  <div class="news">
-    <News/>
   </div>
 </div>

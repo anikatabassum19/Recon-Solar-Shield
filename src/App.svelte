@@ -5,7 +5,7 @@
   import Index from './routes/index.svelte';
   import Home from './routes/home.svelte';
   import VChart from './routes/v_chart.svelte';
-  import News from './routes/news.svelte';
+  import Analytics from './routes/analytics.svelte';
 </script>
 
 <main>
@@ -13,6 +13,6 @@
     <Route path="/" component={Index} />
     <Route path="/home" component={Home} />
     <Route path="/chart" component={VChart} />
-    <Route path="/news" component={News}/>
+    <Route path="/analytics" component={Analytics}/>
   </Router>
 </main>
