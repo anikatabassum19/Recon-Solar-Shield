@@ -11,6 +11,7 @@
   let earthData = {};
   let solarWindData = {};
   let solarWindPred = {};
+  let data = {};
 
   let reconFreqDay;
   let reconFreqMonth;
@@ -106,8 +107,42 @@
       await fetchSolarWindPrediction(solarWindData,earthData);
     }
     vector.bt_pred = solarWindPred.bt;
-    
+
+    data = await fetchDscovrData();
+
+    vector.bx_pred = vector.bt_pred * Math.cos(data.theta_gsm) 
+      * Math.cos(data.phi_gsm);
+    vector.by_pred = vector.bt_pred * Math.cos(data.theta_gsm) 
+      * Math.sin(data.phi_gsm);
+    vector.bz_pred = vector.bt_pred * Math.sin(data.theta_gsm);
+
   });
+
+async function fetchDscovrData(){
+
+  let url = "https://services.swpc.noaa.gov/json/dscovr/dscovr_mag_1s.json";
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      // Successfully posted the tweet
+      const data = await response.json();
+      const lastElement = data[data.length - 1]
+      return lastElement;
+    } else {
+      // Handle any errors during the POST request
+      console.error("Failed to fetch data!");
+    }
+  } catch (error) {
+    // Handle network or fetch errors
+    console.error("Error :", error);
+  }
+}
 
 </script>
   
@@ -140,16 +175,16 @@
     
     <div class="options-container">
       <button class="round-button">
-        Bx<br/>{vector.bx_pred}
+        Bx<br/>{vector.bx_pred.toFixed(2)}
       </button>
       <button class="round-button">
-        By<br/>{vector.by_pred}
+        By<br/>{vector.by_pred.toFixed(2)}
       </button>
       <button class="round-button">
-        Bz<br/>{vector.bz_pred}
+        Bz<br/>{vector.bz_pred.toFixed(2)}
       </button>
       <button class="round-button">
-        Bt<br/>{vector.bt_pred}
+        Bt<br/>{vector.bt_pred.toFixed(2)}
       </button>
     </div>
 
