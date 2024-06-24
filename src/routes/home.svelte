@@ -163,7 +163,7 @@
     const Vertical = earthData.Vertical;
     const BzGsm = solarWindData.bzGSM;
 
-    if (Vertical === BzGsm && BzGsm < 0) {
+    if (Math.abs(Vertical + BzGsm) <= 1000 && BzGsm < 0) {
       // Magnetic reconnection detected
       return true;
     } else {

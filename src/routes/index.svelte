@@ -18,7 +18,6 @@
   function showHome() {
     displayHome = true;
     displayIndex = false;
-    s;
   }
 
   // Function to display the index.svelte component
