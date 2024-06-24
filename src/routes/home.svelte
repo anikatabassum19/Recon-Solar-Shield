@@ -6,9 +6,8 @@
   import { onMount } from "svelte";
   import { Chart } from "chart.js/auto";
 
-  const apiKey = "1202a311-b72c-4c0c-87fb-48cd908723c1";
-  const apiBaseUrl = "https://app-rssi-api-eastus-dev-001.azurewebsites.net";
-  //const apiBaseUrl = "https://localhost:7095";
+  const apiKey = "e650fd6d1ae2872bd20499f9ba3fbb83";
+  const apiBaseUrl = "https://app-rssi-api-sea-dev.azurewebsites.net";
   // Common API key for both endpoints
   const earthDataApiUrl = apiBaseUrl + "/api/earthdata/ncei";
   const solarWindDataApiUrl = apiBaseUrl + "/api/satellitedata/dscovr";

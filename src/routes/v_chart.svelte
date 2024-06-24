@@ -189,9 +189,3 @@
   </div>
   <div class="analytics"><Analytics /></div>
 </main>
-
-<style>
-  .chart-items {
-    width: 100%;
-  }
-</style>
