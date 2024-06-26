@@ -160,7 +160,7 @@
 
   // Function to check for magnetic reconnection
   function checkMagneticReconnection() {
-    const Vertical = earthData.Vertical;
+    const Vertical = earthData.vertical;
     const BzGsm = solarWindData.bzGSM;
 
     if (Math.abs(Vertical + BzGsm) <= 1000 && BzGsm < 0) {
@@ -350,7 +350,7 @@
 
     // Check reconnection
     magneticReconnection = checkMagneticReconnection();
-
+    console.log("Reconnection Status >>> " + magneticReconnection);
     // Take appropriate action
     if (magneticReconnection) {
       /* Not necessarily needed as taken care of in the backend*/
@@ -458,7 +458,7 @@
 
       <div class="relative bottom-10">
         {#if magneticReconnection}
-          <p class="bullet-point">Magnetic Reconnection Detected!</p>
+          <p class="bullet-point-red">Magnetic Reconnection Detected!</p>
         {:else}
           <p class="bullet-point-green">No Magnetic Reconnection Detected.</p>
         {/if}
@@ -477,12 +477,31 @@
     padding-left: 20px; /* Adjust the spacing as needed */
   }
 
+  .bullet-point-red {
+    position: relative;
+    padding-left: 20px; /* Adjust the spacing as needed */
+  }
+
   .bullet-point-green::before {
     content: "";
     display: inline-block;
     width: 10px; /* Adjust the size of the bullet point */
     height: 10px; /* Adjust the size of the bullet point */
     background-color: rgb(172, 228, 20);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: glow 1s infinite; /* Add a glow animation */
+  }
+
+  .bullet-point-red::before {
+    content: "";
+    display: inline-block;
+    width: 10px; /* Adjust the size of the bullet point */
+    height: 10px; /* Adjust the size of the bullet point */
+    background-color: red;
     border-radius: 50%;
     position: absolute;
     left: 0;
