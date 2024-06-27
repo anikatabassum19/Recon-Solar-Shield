@@ -6,6 +6,7 @@
   const earthApiUrl = baseApiUrl + "/api/earthdata/ncei";
   const solarWindApiUrl = baseApiUrl + "/api/satellitedata/ace";
   const predUrl = baseApiUrl + "/api/btregression";
+  const reconFreqApiUrl = baseApiUrl + "/api/history/summary";
 
   let earthData = {};
   let solarWindData = {};
@@ -94,24 +95,26 @@
     }
   }
 
-  onMount(async () => {
-    // Fetch data from backend
-    await fetchSolarWindData();
-    await fetchEarthData();
 
-    if (solarWindData != null && earthData != null) {
-      await fetchSolarWindPrediction(solarWindData, earthData);
+  // Function to fetch reconnection frequencies
+  async function fetchReconnectionFrequencies() {
+    console.log("Fetching reconnection frequencies");
+    const response = await fetch(reconFreqApiUrl, {
+      headers: {
+        "x-api-key": apiKey,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const freqData = await response.json();
+      reconFreqDay = freqData[0];
+      reconFreqWeek = freqData[1];
+      reconFreqMonth = freqData[2];
+    } else {
+      console.error("Failed to fetch reconnection frequencies!");
     }
-    vector.bt_pred = solarWindPred.bt;
-
-    data = await fetchDscovrData();
-
-    vector.bx_pred =
-      vector.bt_pred * Math.cos(data.theta_gsm) * Math.cos(data.phi_gsm);
-    vector.by_pred =
-      vector.bt_pred * Math.cos(data.theta_gsm) * Math.sin(data.phi_gsm);
-    vector.bz_pred = vector.bt_pred * Math.sin(data.theta_gsm);
-  });
+  }
 
   async function fetchDscovrData() {
     let url = "https://services.swpc.noaa.gov/json/dscovr/dscovr_mag_1s.json";
@@ -137,6 +140,32 @@
       console.error("Error :", error);
     }
   }
+
+  async function lifeCycleEvent() {
+    // Fetch data from backend
+    await fetchSolarWindData();
+    await fetchEarthData(); 
+
+    if (solarWindData != null && earthData != null) {
+      await fetchSolarWindPrediction(solarWindData, earthData);
+    }
+    vector.bt_pred = solarWindPred.bt;
+
+    data = await fetchDscovrData();
+
+    vector.bx_pred = vector.bt_pred * Math.cos(data.theta_gsm) * Math.cos(data.phi_gsm);
+    vector.by_pred = vector.bt_pred * Math.cos(data.theta_gsm) * Math.sin(data.phi_gsm);
+    vector.bz_pred = vector.bt_pred * Math.sin(data.theta_gsm);
+  }
+
+  onMount(async () => {
+    await lifeCycleEvent();
+    await fetchReconnectionFrequencies();
+    // Fetch new data at 10s interval
+    setInterval(lifeCycleEvent, 10000);
+    setInterval(fetchReconnectionFrequencies,30000);
+  });
+
 </script>
 
 <main>
