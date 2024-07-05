@@ -1,11 +1,15 @@
-export async function get() {
+// src/routes/api/reconnection-status.ts
+
+import type { RequestHandler } from '@sveltejs/kit';
+
+export const get: RequestHandler = async () => {
   const apiKey = "e650fd6d1ae2872bd20499f9ba3fbb83";
   const apiBaseUrl = "https://app-rssi-api-sea-dev.azurewebsites.net";
   const earthDataApiUrl = `${apiBaseUrl}/api/earthdata/ncei`;
   const solarWindDataApiUrl = `${apiBaseUrl}/api/satellitedata/dscovr`;
 
-  let earthData = {};
-  let solarWindData = {};
+  let earthData;
+  let solarWindData;
 
   async function fetchEarthData() {
     const response = await fetch(earthDataApiUrl, {
@@ -44,4 +48,4 @@ export async function get() {
     status: 200,
     body: { magneticReconnection },
   };
-}
+};
