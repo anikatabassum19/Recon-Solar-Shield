@@ -421,6 +421,26 @@
 </script>
 
 <main class="">
+      <section class="w-full col-span-4 h-full space-y-10">
+<div class="flex gap-x-10">
+        <div class="border h-fit p-2 w-full">
+        <h2>Geo-magnet</h2>
+        <canvas id="earthChart" width="100" height="50" />
+      </div>
+      <div class="border p-2 h-fit w-full">
+        <h2>Solar wind</h2>
+        <canvas id="solarWindChart" width="100" height="50" />
+      </div>
+</div>
+
+      <div class="relative bottom-10">
+        {#if magneticReconnection}
+          <p class="bullet-point-red">Magnetic Reconnection Detected!</p>
+        {:else}
+          <p class="bullet-point-green">No Magnetic Reconnection Detected.</p>
+        {/if}
+      </div>
+    </section>
   <div class="navbar">
     <div>
       <button on:click={showACESatellite} class="text-xs p-3">
@@ -433,8 +453,8 @@
   </div>
 
   <!-- Display the S-Satellite component when clicked -->
-  <div class="grid grid-cols-12 gap-x-10">
-    <div class="w-full h-full flex col-span-8 mt-16">
+  <div class=" gap-x-10">
+    <div class="w-full h-full flex col-span-8 ">
       {#if displayACESatellite}
         <Ace_Sat />
       {:else}
@@ -445,25 +465,6 @@
       {/if}
     </div>
 
-    <!-- Earth and Sun Data Line Charts -->
-    <section class="w-full col-span-4 h-full space-y-10">
-      <div class="border h-fit p-2 w-full">
-        <h2>Geo-magnet</h2>
-        <canvas id="earthChart" width="400" height="200" />
-      </div>
-      <div class="border p-2 h-fit w-full">
-        <h2>Solar wind</h2>
-        <canvas id="solarWindChart" width="400" height="200" />
-      </div>
-
-      <div class="relative bottom-10">
-        {#if magneticReconnection}
-          <p class="bullet-point-red">Magnetic Reconnection Detected!</p>
-        {:else}
-          <p class="bullet-point-green">No Magnetic Reconnection Detected.</p>
-        {/if}
-      </div>
-    </section>
   </div>
 
   <!-- Magnetic Reconnection Detection -->
